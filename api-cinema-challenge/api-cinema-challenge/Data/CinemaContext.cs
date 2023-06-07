@@ -16,9 +16,9 @@ namespace api_cinema_challenge.Data
         {
             optionsBuilder.UseNpgsql(GetConnectionString());
         }
-        public DbSet<Customer> customers { get; set; }
-        public DbSet<Movie> movies { get; set; }
-        public DbSet<Screening> screenings { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Screening> Screenings { get; set; }
 
     }
 }
