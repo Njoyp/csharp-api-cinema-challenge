@@ -1,12 +1,15 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using api_cinema_challenge.EndPoints;
+using api_cinema_challenge.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -16,11 +19,11 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "TITLE_OF_PROJECT_API",
-        Description = "DESCRIPTION_OF_API",
+        Title = "Cinema Booking Challenge",
+        Description = "This API is part of an assignment and simulates the management of movies in a cinema ",
         Contact = new OpenApiContact
         {
-            Name = "YOUR_NAME",
+            Name = "Nikita Pieters",
         }
     });
 });
@@ -36,6 +39,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.ConfigureTestAPI();
+app.ConfigureCustomerApi();
+app.ConfigureMoviesApi();
+app.ConfigureScreeningsApi();
+
 
 app.UseHttpsRedirection();
 
