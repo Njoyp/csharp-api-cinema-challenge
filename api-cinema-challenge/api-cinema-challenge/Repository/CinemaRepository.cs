@@ -71,10 +71,18 @@ namespace api_cinema_challenge.Repository
         {
             using (var db = new CinemaContext())
             {
-                movie.UpdatedAt = DateTime.UtcNow;
-                db.Update(movie);
+                var targetMovie = db.Movies.FirstOrDefault(i => i.Id == movie.Id);
+                if (targetMovie != null)
+                {
+                    targetMovie.Title =  string.IsNullOrEmpty(movie.Title) ? targetMovie.Title : movie.Title;
+                    targetMovie.Rating = string.IsNullOrEmpty(movie.Rating) ? targetMovie.Rating : movie.Rating;
+                    targetMovie.Description = string.IsNullOrEmpty(movie.Description) ? targetMovie.Description : movie.Description;
+                    targetMovie.RuntimeMins = movie.RuntimeMins == 0 ? targetMovie.RuntimeMins : movie.RuntimeMins;
+                }
+                targetMovie.UpdatedAt = DateTime.UtcNow;
+                db.Update(targetMovie);
                 db.SaveChanges();
-                return movie;
+                return targetMovie;
             }
         }
 
