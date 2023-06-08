@@ -4,7 +4,7 @@ namespace api_cinema_challenge.Repository
 {
     public interface ICinemaRepository
     {
-        Customer AddCustomer (Customer customer);
+        ResponseCustomer AddCustomer (Customer customer);
         IEnumerable<Customer> GetCustomers();
         Customer UpdateCustomer(Customer customer);
         Customer DeleteCustomer(int id);

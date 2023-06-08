@@ -5,14 +5,16 @@ namespace api_cinema_challenge.Repository
 {
     public class CinemaRepository : ICinemaRepository
     {
-        public Customer AddCustomer(Customer customer)
+        public ResponseCustomer AddCustomer(Customer customer)
         {
             using (var db = new CinemaContext())
             {
+                ResponseCustomer newCustomer = new ResponseCustomer();
                 customer.CreatedAt = DateTime.UtcNow;
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return customer;
+                newCustomer.Data = customer;
+                return newCustomer;
             }
         }
         public IEnumerable<Customer> GetCustomers()
@@ -27,10 +29,18 @@ namespace api_cinema_challenge.Repository
         {
             using ( var db = new CinemaContext())
             {
-                customer.UpdatedAt = DateTime.UtcNow;
-                db.Update(customer);
+                var targetcustomer = db.Customers.FirstOrDefault(i => i.Id == customer.Id);
+                if (targetcustomer != null)
+                {
+                    targetcustomer.Name = string.IsNullOrEmpty(customer.Name) ? targetcustomer.Name : customer.Name;
+                    targetcustomer.Email = string.IsNullOrEmpty(customer.Email) ? targetcustomer.Email : customer.Email;
+                    targetcustomer.Phone = string.IsNullOrEmpty(customer.Phone) ? targetcustomer.Phone : customer.Phone;
+                }
+                //targetcustomer.UpdatedAt = DateTime.UtcNow;
+                targetcustomer.Update();
+                db.Update(targetcustomer);
                 db.SaveChanges();
-                return customer;
+                return targetcustomer;
             }
         }
         public Customer DeleteCustomer(int id)
