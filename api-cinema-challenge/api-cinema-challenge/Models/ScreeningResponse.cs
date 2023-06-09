@@ -1,9 +1,8 @@
 ﻿namespace api_cinema_challenge.Models
 {
-    public class ResponseCustomer
+    public class ScreeningResponse
     {
         public string Status { get; set; } = "Succes";
-        public Customer Data { get; set; }
-
+        public Screening Data { get; set; }
     }
 }

@@ -5,11 +5,11 @@ namespace api_cinema_challenge.Repository
 {
     public class CinemaRepository : ICinemaRepository
     {
-        public ResponseCustomer AddCustomer(Customer customer)
+        public CustomerResponse AddCustomer(Customer customer)
         {
             using (var db = new CinemaContext())
             {
-                ResponseCustomer newCustomer = new ResponseCustomer();
+                CustomerResponse newCustomer = new CustomerResponse();
                 customer.CreatedAt = DateTime.UtcNow;
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -58,14 +58,16 @@ namespace api_cinema_challenge.Repository
             }
         }
 
-        public Movie AddMovie(Movie movie)
+        public MovieResponse AddMovie(Movie movie)
         {
             using (var db = new CinemaContext())
             {
+                MovieResponse newmovie = new MovieResponse();
                 movie.CreatedAt = DateTime.UtcNow;
                 db.Movies.Add(movie);
                 db.SaveChanges();
-                return movie;
+                newmovie.Data = movie;
+                return newmovie;
             }
         }
 
@@ -111,16 +113,18 @@ namespace api_cinema_challenge.Repository
             }
         }
 
-        public Screening AddScreening(Screening screening)
+        public ScreeningResponse AddScreening(Screening screening)
         {
             using (var db = new CinemaContext())
             {
+                ScreeningResponse newScreening = new ScreeningResponse();
                 screening.CreatedAt = DateTime.UtcNow;
                 screening.StartsAt.ToString();
 
                 db.Screenings.Add(screening);
                 db.SaveChanges();
-                return screening;
+                newScreening.Data = screening;
+                return newScreening;
             }
         }
 
@@ -132,18 +136,20 @@ namespace api_cinema_challenge.Repository
             }
         }
 
-        public Ticket AddTicket(Ticket ticket)
+        public TicketResponse AddTicket(Ticket ticket)
         {
             using (var db = new CinemaContext())
             {
+                TicketResponse newTicket = new TicketResponse();
                 if (ticket.NumSeats != 0)
                 {
                     ticket.CreatedAt = DateTime.UtcNow;
                     db.Tickets.Add(ticket);
                     db.SaveChanges();
-                return ticket;
+                    newTicket.Data = ticket;
+                    return newTicket;
                 }
-                return null;
+                    return null;
             }
         }
 

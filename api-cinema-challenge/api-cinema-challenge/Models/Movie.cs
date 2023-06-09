@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api_cinema_challenge.Models
 {
@@ -23,5 +24,8 @@ namespace api_cinema_challenge.Models
         
         [System.Text.Json.Serialization.JsonIgnore]
         public DateTime UpdatedAt { get; set; }
+
+        //[ForeignKey("Screenings")]
+        //public Screening screenings { get; set; } // but without the id?
     }
 }

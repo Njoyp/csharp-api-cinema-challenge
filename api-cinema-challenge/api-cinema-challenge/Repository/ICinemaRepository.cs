@@ -4,7 +4,7 @@ namespace api_cinema_challenge.Repository
 {
     public interface ICinemaRepository
     {
-        ResponseCustomer AddCustomer (Customer customer);
+        CustomerResponse AddCustomer (Customer customer);
         IEnumerable<Customer> GetCustomers();
         Customer UpdateCustomer(Customer customer);
         Customer DeleteCustomer(int id);
@@ -16,7 +16,7 @@ namespace api_cinema_challenge.Repository
          * update
          * delete
          */
-        Movie AddMovie (Movie movie);
+        MovieResponse AddMovie (Movie movie);
         IEnumerable<Movie> GetMovies();
         Movie UpdateMovie (Movie movie);
         Movie DeleteMovie (int id);
@@ -27,7 +27,7 @@ namespace api_cinema_challenge.Repository
          * get all
          */
 
-        Screening AddScreening (Screening screening);
+        ScreeningResponse AddScreening (Screening screening);
         IEnumerable<Screening> GetScreenings();
 
         /*
@@ -36,7 +36,7 @@ namespace api_cinema_challenge.Repository
          * get all
          */
 
-        Ticket AddTicket (Ticket ticket);
+        TicketResponse AddTicket (Ticket ticket);
         IEnumerable<Ticket> GetTickets();
     }
 }

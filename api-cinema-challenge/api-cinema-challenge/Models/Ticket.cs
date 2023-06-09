@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace api_cinema_challenge.Models
@@ -15,5 +16,17 @@ namespace api_cinema_challenge.Models
 
         [JsonIgnore]
         public DateTime UpdatedAt { get; set; }
+
+        /*
+        [ForeignKey("Movie")]
+        //title
+
+        [ForeignKey("Screening")]
+        //startsat
+        //screennumber
+
+        [ForeignKey("Customer")]
+        //name
+        */
     }
 }
