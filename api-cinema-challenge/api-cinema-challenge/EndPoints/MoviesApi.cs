@@ -49,7 +49,7 @@ namespace api_cinema_challenge.EndPoints
             try
             {
                 var m = repository.UpdateMovie(movie);
-                return m != null ? Results.Created($"https://localhost:7195/Customers/{movie.Id}", m) : Results.BadRequest("Couldn't update movie, please check all input field.");
+                return m != null ? Results.Created($"https://localhost:7195/Movies/{movie.Id}", m) : Results.BadRequest("Couldn't update movie, please check all input field.");
             }
             catch (Exception ex)
             {

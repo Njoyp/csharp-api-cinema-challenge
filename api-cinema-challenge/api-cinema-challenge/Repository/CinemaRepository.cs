@@ -36,8 +36,8 @@ namespace api_cinema_challenge.Repository
                     targetcustomer.Email = string.IsNullOrEmpty(customer.Email) ? targetcustomer.Email : customer.Email;
                     targetcustomer.Phone = string.IsNullOrEmpty(customer.Phone) ? targetcustomer.Phone : customer.Phone;
                 }
-                //targetcustomer.UpdatedAt = DateTime.UtcNow;
-                targetcustomer.Update();
+                targetcustomer.UpdatedAt = DateTime.UtcNow;
+                //targetcustomer.Update();
                 db.Update(targetcustomer);
                 db.SaveChanges();
                 return targetcustomer;
@@ -129,6 +129,29 @@ namespace api_cinema_challenge.Repository
             using (var db = new CinemaContext())
             {
                 return db.Screenings.ToList();
+            }
+        }
+
+        public Ticket AddTicket(Ticket ticket)
+        {
+            using (var db = new CinemaContext())
+            {
+                if (ticket.NumSeats != 0)
+                {
+                    ticket.CreatedAt = DateTime.UtcNow;
+                    db.Tickets.Add(ticket);
+                    db.SaveChanges();
+                return ticket;
+                }
+                return null;
+            }
+        }
+
+        public IEnumerable<Ticket> GetTickets()
+        {
+            using (var db = new CinemaContext())
+            {
+                return db.Tickets.ToList();
             }
         }
     }

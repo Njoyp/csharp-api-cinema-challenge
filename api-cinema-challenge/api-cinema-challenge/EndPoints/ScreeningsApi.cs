@@ -19,7 +19,7 @@ namespace api_cinema_challenge.EndPoints
             try
             {
                 var s = repository.AddScreening(screening);
-                return s != null ? Results.Created($"https://localhost:7195/Customers/{screening.Id}", s) : Results.BadRequest("Couldn't create new screening, please check all required fields.");
+                return s != null ? Results.Created($"https://localhost:7195/Screenings/{screening.Id}", s) : Results.BadRequest("Couldn't create new screening, please check all required fields.");
             }
             catch (Exception ex)
             {
