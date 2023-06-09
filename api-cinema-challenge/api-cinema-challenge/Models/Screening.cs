@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace api_cinema_challenge.Models
 {
@@ -10,10 +11,10 @@ namespace api_cinema_challenge.Models
         public int Capacity { get; set; }
         public DateTime StartsAt { get; set; }
 
-        [System.Text.Json.Serialization.JsonIgnore]
+        [JsonIgnore]
         public DateTime CreatedAt { get; set; } // DateTime.UtcNow move this to repository
         
-        [System.Text.Json.Serialization.JsonIgnore]
+        [JsonIgnore]
         public DateTime UpdatedAt { get; set; } 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace api_cinema_challenge.Models
 {
@@ -19,10 +20,10 @@ namespace api_cinema_challenge.Models
         public string Description { get; set; }
         public int RuntimeMins { get; set; }
 
-        [System.Text.Json.Serialization.JsonIgnore]
+        [JsonIgnore]
         public DateTime CreatedAt { get; set; } // DateTime.UtcNow move this to repository
         
-        [System.Text.Json.Serialization.JsonIgnore]
+        [JsonIgnore]
         public DateTime UpdatedAt { get; set; }
 
         //[ForeignKey("Screenings")]
