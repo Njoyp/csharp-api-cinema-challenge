@@ -64,6 +64,15 @@ namespace api_cinema_challenge.Repository
             {
                 MovieResponse newmovie = new MovieResponse();
                 movie.CreatedAt = DateTime.UtcNow;
+                if(movie.MovieScreenings != null) {
+                    if (movie.MovieScreenings.Any())
+                    {
+                        movie.MovieScreenings.ToList().ForEach(x =>
+                        {
+                            x.CreatedAt = DateTime.UtcNow;
+                        });
+                    }
+                }
                 db.Movies.Add(movie);
                 db.SaveChanges();
                 newmovie.Data = movie;

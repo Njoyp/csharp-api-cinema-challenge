@@ -101,6 +101,9 @@ namespace api_cinema_challenge.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("ScreenNumber")
                         .HasColumnType("integer");
 
@@ -111,6 +114,8 @@ namespace api_cinema_challenge.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
 
                     b.ToTable("Screenings");
                 });
@@ -135,6 +140,18 @@ namespace api_cinema_challenge.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("api_cinema_challenge.Models.Screening", b =>
+                {
+                    b.HasOne("api_cinema_challenge.Models.Movie", null)
+                        .WithMany("MovieScreenings")
+                        .HasForeignKey("MovieId");
+                });
+
+            modelBuilder.Entity("api_cinema_challenge.Models.Movie", b =>
+                {
+                    b.Navigation("MovieScreenings");
                 });
 #pragma warning restore 612, 618
         }

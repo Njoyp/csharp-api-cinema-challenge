@@ -26,7 +26,9 @@ namespace api_cinema_challenge.Models
         [JsonIgnore]
         public DateTime UpdatedAt { get; set; }
 
-        //[ForeignKey("Screenings")]
-        //public Screening screenings { get; set; } // but without the id?
+        
+       
+        public IEnumerable<Screening> MovieScreenings { get; set; } // but without the id?
+        
     }
 }
